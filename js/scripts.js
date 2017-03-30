@@ -2,7 +2,7 @@
 var romanNumeral = function(userInput){
   var functionsArray = [thousands, hundreds, tens, singles];
   var resultArray = [];
-  var userInputArray = userInput.toString().split("");
+  var userInputArray = userInput.split("");
   var romanNumeralArray = ["I", "V", "X", "L", "C", "D", "M"];
   var romanNumeralSplit = [];
   var numbersArray = numbers(userInputArray);
@@ -13,8 +13,6 @@ var romanNumeral = function(userInput){
   };
 
   var r = 0
-
-
 
   if (userInput > 999) {
     forRomans(0);
@@ -29,28 +27,17 @@ var romanNumeral = function(userInput){
     return resultArray.join('');
   } else if (userInput > 0) {
     numbersArray.unshift(0, 0, 0);
-    forRomans(3);
+    forRomans(0);
     return resultArray.join('');
   } ;
-
-
-  // while (r < 3999) {
-  //   if (userInput > 999){
-  //     thousands(numbersArray[r]);
-  //     r++;
-  //   } else if (userInput > 99){
-  //     hundreds(numbersArray[r]);
-  //     r++;
-  //   } else if (userInput > 10){
-  //     tens(numbersArray[r]);
-  //     r++;
-  //   } else if (userInput > 0){
-  //     singles(numbersArray[r]);
-  //   }
-  //   return text;
-  // };
 };
-
+var numbers = function(array){
+  var userNumbersArray = [];
+  array.forEach(function(number) {
+    userNumbersArray.push(number);
+  });
+  return userNumbersArray;
+};
 //numerals from one to ten
 var singles = function(s){
   var i = 0;
@@ -146,20 +133,14 @@ var thousands = function(m){
   return text;
 };
 
-var numbers = function(array){
-  var userNumbersArray = [];
-  array.forEach(function(number) {
-    userNumbersArray.push(parseInt(number));
-  });
-  return userNumbersArray;
-};
+
 
 //user interface logic
 $(document).ready(function(){
   $("form.roman-form").submit(function(event){
     event.preventDefault();
     var userInput = $("input[name=number]").val();
-    // var userInputArray = userInputString.split("");
+    console.log(typeof userInput);
     var result = romanNumeral(userInput);
     $(".results").show();
     $(".results").text(result);
