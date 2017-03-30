@@ -1,4 +1,7 @@
 //business logic
+var romanNumeral = function(userInput){
+  
+}
 
 //user interface logic
 $(document).ready(function(){
